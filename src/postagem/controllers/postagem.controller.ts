@@ -32,7 +32,7 @@ export class PostagemController {
 
   @Get('/titulo/:titulo')
   @HttpCode(HttpStatus.OK)
-  findByAllTitulo(@Param('titulo') titulo: string): Promise<Postagem[]> {
+  findAllByTitulo(@Param('titulo') titulo: string): Promise<Postagem[]> {
     //novo método, findAllByTitulo foi criado na service
     //Por questões de boas práticas e legibilidade do código, a Variável de Caminho e o Parâmetro do Método devem possuir o mesmo nome
     return this.postagemService.findAllByTitulo(titulo);
