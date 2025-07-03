@@ -7,6 +7,7 @@ import {
   UpdateDateColumn,
 } from 'typeorm'; //pacote typeorm (biblioteca para conectar com o db)
 import { Tema } from '../../tema/entities/tema.entity';
+import { Usuario } from '../../usuario/entities/usuario.entity';
 
 @Entity({ name: 'tb_postagens' }) //criando a tabela e seus atributos
 export class Postagem {
@@ -30,4 +31,9 @@ export class Postagem {
   })
   tema: Tema;
   //a Chave Estrangeira (temaId) foi criada na Tabela tb_postagens, no db_blogpessoal
+
+  @ManyToOne(() => Usuario, (usuario) => usuario.postagem, {
+    onDelete: 'CASCADE',
+  })
+  usuario: Usuario;
 }

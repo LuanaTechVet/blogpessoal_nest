@@ -1,9 +1,12 @@
+import { AuthModule } from './auth/auth.module';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { PostagemModule } from './postagem/postagem.module'; //lógica
 import { Postagem } from './postagem/entities/postagem.entity'; //estrutura da tabela
 import { Tema } from './tema/entities/tema.entity';
 import { TemaModule } from './tema/tema.module';
+import { Usuario } from './usuario/entities/usuario.entity';
+import { UsuarioModule } from './usuario/usuario.module';
 
 @Module({
   imports: [
@@ -14,11 +17,13 @@ import { TemaModule } from './tema/tema.module';
       username: 'root',
       password: 'root',
       database: 'db_blogpessoal',
-      entities: [Postagem, Tema], //tabelas, se não forem registradas aqui não serão criadas no db
+      entities: [Postagem, Tema, Usuario], //tabelas, se não forem registradas aqui não serão criadas no db
       synchronize: true, //se é para modifiacar em tempo real ou não
     }),
     PostagemModule, //para garantir que os recursos do módulo de postagem, como a Entidade, Service e Controller, sejam registrados e possam ser utilizados pela aplicação
     TemaModule, //não for registrado no AppModule, não será possível criar um Relacionamento com as Classes Entidades deste Módulo
+    AuthModule,
+    UsuarioModule,
   ],
   controllers: [],
   providers: [],
