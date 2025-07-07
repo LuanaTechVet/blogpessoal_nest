@@ -14,7 +14,10 @@ import {
 import { Postagem } from '../entities/postagem.entity';
 import { PostagemService } from '../services/postagem.service';
 import { JwtAuthGuard } from '../../auth/guard/jwt-auth.guard';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
+@ApiBearerAuth()
+@ApiTags('Postagem')
 @UseGuards(JwtAuthGuard)
 @Controller('/postagens') //URL (Endpoint): Define o caminho da requisição,todas as requisições enviadas para o caminho /postagens serão direcionadas para a classe controladora PostagemController
 export class PostagemController {
